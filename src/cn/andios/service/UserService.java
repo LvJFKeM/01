@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserService {
-    public String getUserPwdByUsername(String username){
+    public String getUserPwdByUsername(String username) throws SQLException {
         Connection connection = UserDao.getConn();
         String password = null;
         String sql = "select * from user where  username = ?";

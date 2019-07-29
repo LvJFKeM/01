@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 public class LoginServlet extends HttpServlet {
     @Override
@@ -20,7 +21,12 @@ public class LoginServlet extends HttpServlet {
 
 
         UserService userService = new UserService();
-        String pwd  = userService.getUserPwdByUsername(username);
+        String pwd  = null;
+        try {
+            pwd = userService.getUserPwdByUsername(username);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         System.out.println("usernmae：" + username);
         System.out.println("password：" + password);
 
